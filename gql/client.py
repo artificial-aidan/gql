@@ -571,7 +571,7 @@ class Client:
             # Then reraise the exception
             raise
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> 'AsyncClientSession':
 
         assert isinstance(
             self.transport, AsyncTransport
@@ -599,7 +599,7 @@ class Client:
 
         await self.transport.close()
 
-    def __enter__(self):
+    def __enter__(self) -> 'SyncClientSession':
 
         assert not isinstance(self.transport, AsyncTransport), (
             "Only a sync transport can be used."
